@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/your-org/gitops.git
+    repoURL: https://github.com/franciscolopezv/my-gitops-repo.git
     targetRevision: main
     path: apps/temporal-workers
     helm:

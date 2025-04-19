@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/your-org/gitops
+    repoURL: https://github.com/franciscolopezv/my-gitops-repo.git
     path: addons/external-secrets
     targetRevision: main
     helm:
