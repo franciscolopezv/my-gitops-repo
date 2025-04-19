@@ -1,0 +1,9 @@
+installCRDs: true
+
+webhook:
+  enabled: true
+
+certController:
+  enabled: true
+
+replicaCount: 1

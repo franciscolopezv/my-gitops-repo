@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: temporal-worker
+  labels:
+    app: temporal-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: temporal-worker
+  template:
+    metadata:
+      labels:
+        app: temporal-worker
+    spec:
+      containers:
+        - name: worker
+          image: alpine:3.18
+          command: ["/bin/sh", "-c", "echo Running Temporal Worker && sleep 3600"]
+          envFrom:
+            - secretRef:
+                name: app-secrets  # Replace with your ExternalSecret name

@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: temporal-workers
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/your-org/gitops.git
+    targetRevision: main
+    path: apps/temporal-workers
+    helm:
+      valuesObject:
+        env:
+          clientId: '{{ secret "temporal-workers/eso-sa-identity" "clientId" }}'
+          tenantId: '{{ secret "temporal-workers/eso-sa-identity" "tenantId" }}'
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: temporal-workers
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
