@@ -30,7 +30,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/your-org/gitops.git
+    repoURL: https://github.com/franciscolopezv/my-gitops-repo.git
     targetRevision: main
     path: addons/cert-manager
     helm:
