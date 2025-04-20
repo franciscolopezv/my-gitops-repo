@@ -1,9 +1,3 @@
 env:
   clientId: ""
   tenantId: ""
-
-serviceAccount:
-  name: eso-sa
-  annotations:
-    azure.workload.identity/client-id: '{{ .Values.env.clientId }}'
-    azure.workload.identity/tenant-id: '{{ .Values.env.tenantId }}'
