@@ -1,3 +1,6 @@
 env:
   clientId: ""
   tenantId: ""
+
+serviceAccount:
+  name: eso-sa
