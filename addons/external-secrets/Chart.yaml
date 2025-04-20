@@ -1,7 +1,6 @@
 apiVersion: v2
-name: external-secrets
+name: external-secrets-bootstrap
+description: External Secrets identity configuration
+type: application
 version: 0.1.0
-dependencies:
-  - name: external-secrets
-    version: 0.9.12
-    repository: https://charts.external-secrets.io
+appVersion: 1.0.0

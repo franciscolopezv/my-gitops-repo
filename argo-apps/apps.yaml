@@ -9,10 +9,6 @@ spec:
     repoURL: https://github.com/franciscolopezv/my-gitops-repo.git
     targetRevision: main
     path: apps/temporal-workers
-    helm:
-      valuesFrom:
-        - secretRef:
-            name: eso-sa-identity
   destination:
     server: https://kubernetes.default.svc
     namespace: temporal-workers

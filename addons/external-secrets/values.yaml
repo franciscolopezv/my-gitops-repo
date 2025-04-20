@@ -1,9 +1,6 @@
 installCRDs: true
 
-webhook:
-  enabled: true
-
-certController:
-  enabled: true
-
-replicaCount: 1
+azureClientId: ""
+azureTenantId: ""
+vaultName: "" # optional if templated
+namespace: temporal-workers
