@@ -20,4 +20,4 @@ spec:
           command: ["/bin/sh", "-c", "echo Running Temporal Worker && sleep 3600"]
           envFrom:
             - secretRef:
-                name: app-secrets  # Replace with your ExternalSecret name
+                name: temporal-env-vars  # Replace with your ExternalSecret name
