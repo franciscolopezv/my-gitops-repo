@@ -24,6 +24,11 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.secretName }}
                   key: TEMPORAL_ADDRESS
+            - name: TEMPORAL_NAMESPACE
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretName }}
+                  key: TEMPORAL_NAMESPACE
           volumeMounts:
             - name: certs
               mountPath: {{ .Values.mountPath }}
