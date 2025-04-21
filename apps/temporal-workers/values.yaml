@@ -1,5 +1,17 @@
-clientId: ""
-tenantId: ""
+replicaCount: 1
 
-serviceAccount:
-  name: eso-sa
+image:
+  repository: acrtemporal49e78cc7.azurecr.io/multiagent-orchestrator
+  tag: latest
+  pullPolicy: IfNotPresent
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+secretName: temporal-env-vars
+mountPath: /etc/certs

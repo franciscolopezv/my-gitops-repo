@@ -1,23 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: temporal-worker
+  name: temporal-orchestrator
   labels:
-    app: temporal-worker
+    app: temporal-orchestrator
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: temporal-worker
+      app: temporal-orchestrator
   template:
     metadata:
       labels:
-        app: temporal-worker
+        app: temporal-orchestrator
     spec:
       containers:
         - name: worker
-          image: alpine:3.18
-          command: ["/bin/sh", "-c", "echo Running Temporal Worker && sleep 3600"]
-          envFrom:
-            - secretRef:
-                name: temporal-env-vars  # Replace with your ExternalSecret name
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: TEMPORAL_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretName }}
+                  key: TEMPORAL_ADDRESS
+          volumeMounts:
+            - name: certs
+              mountPath: {{ .Values.mountPath }}
+              readOnly: true
+      volumes:
+        - name: certs
+          secret:
+            secretName: {{ .Values.secretName }}
+            items:
+              - key: client.crt
+                path: client.crt
+              - key: client.key
+                path: client.key
