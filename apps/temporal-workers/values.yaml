@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: acrtemporal49e78cc7.azurecr.io/multiagent-orchestrator
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 resources:
   limits:
