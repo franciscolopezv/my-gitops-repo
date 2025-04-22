@@ -15,7 +15,7 @@ spec:
         app: app-designer
     spec:
       containers:
-        - name: worker
+        - name: app-designer-worker
           image: "{{ .Values.image.repository_app_designer }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:

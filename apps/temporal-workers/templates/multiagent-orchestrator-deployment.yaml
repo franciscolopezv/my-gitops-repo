@@ -15,7 +15,7 @@ spec:
         app: multiagent-orchestrator
     spec:
       containers:
-        - name: worker
+        - name: orchestrator-worker
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
