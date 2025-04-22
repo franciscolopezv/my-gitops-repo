@@ -2,6 +2,7 @@ replicaCount: 1
 
 image:
   repository: acrtemporal49e78cc7.azurecr.io/multiagent-orchestrator
+  repository_app_designer: acrtemporal49e78cc7.azurecr.io/app_designer
   tag: latest
   pullPolicy: Always
 

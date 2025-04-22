@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: temporal-orchestrator
+  labels:
+    app: app-designer
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: app-designer
+  template:
+    metadata:
+      labels:
+        app: app-designer
+    spec:
+      containers:
+        - name: worker
+          image: "{{ .Values.image.repository_app_designer }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: TEMPORAL_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretName }}
+                  key: TEMPORAL_ADDRESS
+            - name: TEMPORAL_NAMESPACE
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretName }}
+                  key: TEMPORAL_NAMESPACE
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretName }}
+                  key: OPENAI_API_KEY
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretName }}
+                  key: MONGODB_URI
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretName }}
+                  key: DB_NAME
+          volumeMounts:
+            - name: certs
+              mountPath: {{ .Values.mountPath }}
+              readOnly: true
+      volumes:
+        - name: certs
+          secret:
+            secretName: {{ .Values.secretName }}
+            items:
+              - key: client.crt
+                path: client.crt
+              - key: client.key
+                path: client.key

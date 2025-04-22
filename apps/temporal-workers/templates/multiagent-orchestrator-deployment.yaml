@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: temporal-orchestrator
   labels:
-    app: temporal-orchestrator
+    app: multiagent-orchestrator
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: temporal-orchestrator
+      app: multiagent-orchestrator
   template:
     metadata:
       labels:
-        app: temporal-orchestrator
+        app: multiagent-orchestrator
     spec:
       containers:
         - name: worker
